@@ -1,4 +1,4 @@
-import localforage from 'localforage'
+import * as localforage from 'localforage'
 
 export const loadState = () => {
     try {
@@ -7,12 +7,14 @@ export const loadState = () => {
     catch(ex) {
         Promise.resolve({})
     }
+
+    return null
 }
 
-export const saveState = (state) => {
+export const saveState = (state: any) => {
   try {
     localforage.setItem('localState', state)
   } catch (ex) {
-    console.warn('cannot save state with localforage', ex)
+    window.console.warn('cannot save state with localforage', ex)
   }
 }
