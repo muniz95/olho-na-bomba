@@ -27,5 +27,6 @@
     "@types/react-dom": "^16.0.5",
     "gh-pages": "^1.1.0",
     "typescript": "^2.8.3"
-  }
+  },
+  "homepage": "https://muniz95.github.io/olho-na-bomba"
 }
