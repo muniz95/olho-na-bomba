@@ -1,51 +1,36 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Button, Icon, Input, Row } from 'react-materialize'
 import './App.css';
 
-class App extends Component {
-  constructor(props){
+interface IAppState {
+  fuel: string,
+  price: number,
+  bill: number,
+  liters: number,
+  result: string
+}
+
+class App extends React.Component<{}, IAppState> {
+  public state: any
+
+  constructor(props: any){
     super(props)
 
     this.state = {
-      fuel: undefined,
-      price: undefined,
       bill: undefined,
+      fuel: undefined,
       liters: undefined,
+      price: undefined,
       result: ''
     }
-
+    
     this.updateBill = this.updateBill.bind(this)
     this.updatePrice = this.updatePrice.bind(this)
     this.updateLiters = this.updateLiters.bind(this)
     this.calculate = this.calculate.bind(this)
   }
 
-  updatePrice(event) {
-    this.setState({price: event.target.value});
-  }
-
-  updateBill(event) {
-    this.setState({bill: event.target.value});
-  }
-
-  updateLiters(event) {
-    this.setState({liters: event.target.value});
-  }
-
-  calculate(event) {
-    const bill = Number.parseFloat(this.state.bill)
-    const price = Number.parseFloat(this.state.price)
-    const liters = Number.parseFloat(this.state.liters)
-    const result = liters - (bill / price)
-    if (result > 0)
-      this.setState({ result: `Abastecida com ${result.toFixed(2)} litros a mais`})
-    else if (result < 0)
-      this.setState({result: `Abastecida com ${Math.abs(result).toFixed(2)} litros a menos`})
-    else
-      this.setState({result: `O valor da bomba está OK`})
-  }
-
-  render() {
+  public render() {
     return (
       <div className="App">
         <div className="App-header">
@@ -60,6 +45,32 @@ class App extends Component {
         <h4 className="App-result">{this.state.result}</h4>
       </div>
     )
+  }
+  
+  private updatePrice(event: any) {
+    this.setState({price: event.target.value});
+  }
+
+  private updateBill(event: any) {
+    this.setState({bill: event.target.value});
+  }
+
+  private updateLiters(event: any) {
+    this.setState({liters: event.target.value});
+  }
+
+  private calculate(event: any) {
+    const bill = this.state.bill
+    const price = this.state.price
+    const liters = this.state.liters
+    const result = liters - (bill / price)
+    if (result > 0) {
+      this.setState({ result: `Abastecida com ${result.toFixed(2)} litros a mais`})
+    } else if (result < 0) {
+      this.setState({result: `Abastecida com ${Math.abs(result).toFixed(2)} litros a menos`})
+    } else {
+      this.setState({result: `O valor da bomba está OK`})
+    }
   }
 }
 
