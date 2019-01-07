@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "@types/react-redux": "^5.0.18",
+    "jquery": "^3.3.1",
     "localforage": "^1.7.1",
+    "materialize-css": "^0.100.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-materialize": "^2.2.0",
     "react-redux": "^5.0.7",
-    "react-scripts-ts": "2.15.1",
+    "react-scripts-ts": "^4.0.8",
     "redux": "^4.0.0"
   },
   "scripts": {
@@ -22,11 +24,18 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",
+    "@types/jquery": "^3.3.29",
     "@types/node": "^9.6.6",
     "@types/react": "^16.3.12",
     "@types/react-dom": "^16.0.5",
     "gh-pages": "^1.1.0",
     "typescript": "^2.8.3"
   },
-  "homepage": "https://muniz95.github.io/olho-na-bomba"
+  "homepage": "https://muniz95.github.io/olho-na-bomba",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

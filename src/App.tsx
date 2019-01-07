@@ -1,13 +1,21 @@
+import * as $ from 'jquery'
+import 'materialize-css/dist/js/materialize.js';
 import * as React from 'react';
-import { Button, Icon, Input, Row } from 'react-materialize'
+import { Button, Icon, Input, Modal, Row } from 'react-materialize'
 import './App.css';
+
+interface IGasStation {
+  name: string
+}
 
 interface IAppState {
   fuel: string,
   price: number,
   bill: number,
+  blacklist: IGasStation[],
+  isTrustworthy: boolean,
   liters: number,
-  result: string
+  result: string,
 }
 
 class App extends React.Component<{}, IAppState> {
@@ -18,7 +26,9 @@ class App extends React.Component<{}, IAppState> {
 
     this.state = {
       bill: undefined,
+      blacklist: [],
       fuel: undefined,
+      isTrustworthy: true,
       liters: undefined,
       price: undefined,
       result: ''
@@ -28,9 +38,19 @@ class App extends React.Component<{}, IAppState> {
     this.updatePrice = this.updatePrice.bind(this)
     this.updateLiters = this.updateLiters.bind(this)
     this.calculate = this.calculate.bind(this)
+    this.addBlacklist = this.addBlacklist.bind(this)
   }
 
   public render() {
+    const btnAddBlacklist = this.state.isTrustworthy 
+      ? <Modal
+          id='modalAddBlacklist'
+          trigger={<Button>Adicionar à lista negra</Button>}
+          actions={<Button onClick={this.addBlacklist}>Adicionar</Button>}>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.</p>
+        </Modal>
+      : null
     return (
       <div className="App">
         <div className="App-header">
@@ -43,6 +63,7 @@ class App extends React.Component<{}, IAppState> {
         </Row>
         <Button onClick={this.calculate}><Icon>refresh</Icon></Button>
         <h4 className="App-result">{this.state.result}</h4>
+        { btnAddBlacklist }
       </div>
     )
   }
@@ -60,17 +81,30 @@ class App extends React.Component<{}, IAppState> {
   }
 
   private calculate(event: any) {
-    const bill = this.state.bill
-    const price = this.state.price
-    const liters = this.state.liters
+    const { bill, price, liters } = this.state
     const result = liters - (bill / price)
     if (result > 0) {
       this.setState({ result: `Abastecida com ${result.toFixed(2)} litros a mais`})
     } else if (result < 0) {
-      this.setState({result: `Abastecida com ${Math.abs(result).toFixed(2)} litros a menos`})
+      this.setState({
+        isTrustworthy: false,
+        result: `Abastecida com ${Math.abs(result).toFixed(2)} litros a menos`
+      })
     } else {
       this.setState({result: `O valor da bomba está OK`})
     }
+  }
+  
+  private addBlacklist() {
+    navigator.geolocation.getCurrentPosition((result) => {
+      const { longitude, latitude } = result.coords
+      const name = this.state.gasStationName
+      const modalAddBlacklist = $('#modalAddBlacklist') as any;
+      modalAddBlacklist.modal('close')
+      const gasStation = { name, longitude, latitude }
+      this.setState({blacklist: [...this.state.blacklist, gasStation]})
+      window.console.log('gasStation', gasStation)
+    });
   }
 }
 
