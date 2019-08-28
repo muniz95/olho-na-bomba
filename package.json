@@ -3,39 +3,51 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/react-redux": "^5.0.18",
-    "jquery": "^3.3.1",
+    "@types/jest": "24.0.17",
+    "@types/node": "12.7.2",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.8.5",
+    "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/styled-components": "^4.1.18",
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
     "localforage": "^1.7.1",
-    "materialize-css": "^0.100.2",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-materialize": "^2.2.0",
-    "react-redux": "^5.0.7",
-    "react-scripts-ts": "^4.0.8",
-    "redux": "^4.0.0"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-materialize": "^3.3.4",
+    "react-redux": "^7.1.0",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "styled-components": "^4.3.2",
+    "typescript": "3.5.3"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "@types/jquery": "^3.3.29",
-    "@types/node": "^9.6.6",
-    "@types/react": "^16.3.12",
-    "@types/react-dom": "^16.0.5",
-    "gh-pages": "^1.1.0",
-    "typescript": "^2.8.3"
+    "eslint": "^6.2.2",
+    "gh-pages": "^1.1.0"
   },
   "homepage": "https://muniz95.github.io/olho-na-bomba",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
