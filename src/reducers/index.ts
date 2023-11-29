@@ -1,11 +1,16 @@
 import { combineReducers } from 'redux'
-import { REMOVE_GAS_STATION, SAVE_GAS_STATION } from '../constants'
+import IGasStation from '../interfaces/IGasStation'
 
-const gasStation = (state: any = {}, action: any) => {
+interface IAction {
+  type: string;
+  payload: IGasStation
+}
+
+const gasStation = (state: IGasStation = {name:''}, action: IAction) => {
   switch (action.type) {
-    case REMOVE_GAS_STATION:
+    case 'REMOVE_GAS_STATION':
       return action.payload
-    case SAVE_GAS_STATION:
+    case 'SAVE_GAS_STATION':
       return action.payload
     default:
       return state
