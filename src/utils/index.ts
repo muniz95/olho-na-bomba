@@ -11,7 +11,7 @@ export const loadState = () => {
     return null
 }
 
-export const saveState = (state: any) => {
+export const saveState = (state: string) => {
   try {
     localforage.setItem('localState', state)
   } catch (ex) {

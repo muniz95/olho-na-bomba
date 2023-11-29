@@ -1,41 +1,31 @@
 {
   "name": "olho-na-bomba",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@types/react-redux": "^5.0.18",
-    "jquery": "^3.3.1",
-    "localforage": "^1.7.1",
-    "materialize-css": "^0.100.2",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-materialize": "^2.2.0",
-    "react-redux": "^5.0.7",
-    "react-scripts-ts": "^4.0.8",
-    "redux": "^4.0.0"
-  },
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "localforage": "^1.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "@types/jquery": "^3.3.29",
-    "@types/node": "^9.6.6",
-    "@types/react": "^16.3.12",
-    "@types/react-dom": "^16.0.5",
-    "gh-pages": "^1.1.0",
-    "typescript": "^2.8.3"
-  },
-  "homepage": "https://muniz95.github.io/olho-na-bomba",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  }
 }
