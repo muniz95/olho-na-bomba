@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/react-redux": "^5.0.18",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "localforage": "^1.7.1",
     "materialize-css": "^0.100.2",
     "react": "^16.3.2",
