@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import S from "./styled";
 
 function App() {
   const [bill, setBill] = React.useState(0.0);
@@ -8,16 +8,24 @@ function App() {
   const [price, setPrice] = React.useState(0.0);
   const [result, setResult] = React.useState('');
 
-  const updatePrice = ({currentTarget}: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(currentTarget.valueAsNumber);
+  const updatePrice = ({target}: React.ChangeEvent<HTMLInputElement>) => {
+    const onlyDigits = target.value
+      .split("")
+      .filter(s => /\d/.test(s))
+      .join("")
+      .padStart(3, "0")
+    const digitsFloat = parseFloat(onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2));
+    setPrice(digitsFloat);
   }
+  
   const updateBill = ({currentTarget}: React.ChangeEvent<HTMLInputElement>) => {
     setBill(currentTarget.valueAsNumber);
   }
   const updateLiters = ({currentTarget}: React.ChangeEvent<HTMLInputElement>) => {
     setLiters(currentTarget.valueAsNumber);
   }
-  const calculate = () => {
+  
+  React.useEffect(() => {
     const result = liters - (bill / price)
     if (result > 0) {
       setResult(`Abastecida com ${result.toFixed(2)} litros a mais`);
@@ -27,7 +35,7 @@ function App() {
     } else {
       setResult('O valor da bomba está OK');
     }
-  }
+  }, [bill, price, liters]);
   // const addBlacklist = () => {
   //   navigator.geolocation.getCurrentPosition((result) => {
   //     const { longitude, latitude } = result.coords
@@ -41,18 +49,26 @@ function App() {
   // }
 
   return (
-    <div className="App">
-      <div className="App-header">
+    <S.AppContainer>
+      <S.AppHeader>
         <h4>Descubra se o valor na bomba está de acordo</h4>
-      </div>
+      </S.AppHeader>
       <div>
-        <input type="number" value={price} onChange={updatePrice} placeholder="Preço por litro" />
-        <input type="number" value={bill} onChange={updateBill} placeholder="Total a ser pago" />
-        <input type="number" value={liters} onChange={updateLiters} placeholder="Total de combustível (em litros)" />
+        <S.FieldSeparator>
+          <label htmlFor="bill">Total a ser pago</label>
+          <input type="number" id="bill" value={Number(bill)} onChange={updateBill} />
+        </S.FieldSeparator>
+        <S.FieldSeparator>
+          <label htmlFor="price">Preço por litro</label>
+          <input type="text" id="price" value={price} onChange={updatePrice} />
+        </S.FieldSeparator>
+        <S.FieldSeparator>
+          <label htmlFor="liters">Total de combustível (em litros)</label>
+          <input type="number" id="liters" onChange={updateLiters} />
+        </S.FieldSeparator>
       </div>
-      <button onClick={calculate}>Refresh</button>
-      <h4 className="App-result">{result}</h4>
-    </div>
+      <S.AppResult>{result}</S.AppResult>
+    </S.AppContainer>
   )
 }
 
